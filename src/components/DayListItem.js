@@ -11,10 +11,10 @@ const formatSpots = function(spots) {
 
 export default function DayListItem(props) {
   let dayListItemClass = classNames(
-    'day-list__item', {
-    "--selected": props.selected,
-    "--full": !props.spots
- });
+    'day-list__item', 
+    {'day-list__item--selected': props.selected,
+    'day-list__item--full': !props.spots}
+  );
 
   return (
     <li
