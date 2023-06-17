@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import "index.scss";
 
+// components
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
@@ -12,6 +13,7 @@ import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/index.js";
 import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
 
 //Button stories
 storiesOf("Button", module)
@@ -158,3 +160,17 @@ storiesOf("InterviewerList", module)
   .add("Clickable", () => (
     <Empty onAdd={action("onAdd")}></Empty>
   ));
+
+    // Show stories
+    storiesOf("Show", module)
+    .addParameters({
+      backgrounds: [{ name: "white", value: "#fff", default: true }]
+    })
+    .add("Show", () => (
+    <Show 
+    student={"Lydia Miller-Jones"}
+    interviewer={interviewer.name}
+    onEdit={action('onEdit')}
+    onDelete={action('onDelete')}
+    />
+    ));
