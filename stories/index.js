@@ -17,6 +17,7 @@ import Show from "components/Appointment/Show.js";
 import Confirm from "components/Appointment/Confirm.js";
 import Status from "components/Appointment/Status.js";
 import Error from "components/Appointment/Error.js";
+import Form from "components/Appointment/Form.js";
 
 //Button stories
 storiesOf("Button", module)
@@ -153,7 +154,23 @@ storiesOf("Appointment", module)
   })
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
-  .add("Header", () => <Appointment time="12pm" />);
+  .add("Header", () => <Appointment time="12pm" />)
+  .add("Edit", () => (
+    <Form
+    student={"Britt Ferren"}
+    interviewer={4}
+    interviewers={interviewers}
+    onSave={action('onSave')}
+    onCancel={action('onCancel')}
+    />
+  ))
+  .add("Create", () => (
+    <Form
+    interviewers={interviewers}
+    onSave={action('onSave')}
+    onCancel={action('onCancel')}
+    />
+  ))
 
 // Empty stories
 storiesOf("Empty", module)
