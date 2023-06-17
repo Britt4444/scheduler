@@ -14,6 +14,7 @@ import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/index.js";
 import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
+import Confirm from "components/Appointment/Confirm.js";
 
 //Button stories
 storiesOf("Button", module)
@@ -143,8 +144,8 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-  //Appointment stories
-  storiesOf("Appointment", module)
+//Appointment stories
+storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
@@ -152,8 +153,8 @@ storiesOf("InterviewerList", module)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Appointment time="12pm" />);
 
-  // Empty stories
-  storiesOf("Empty", module)
+// Empty stories
+storiesOf("Empty", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -161,16 +162,29 @@ storiesOf("InterviewerList", module)
     <Empty onAdd={action("onAdd")}></Empty>
   ));
 
-    // Show stories
-    storiesOf("Show", module)
-    .addParameters({
-      backgrounds: [{ name: "white", value: "#fff", default: true }]
-    })
-    .add("Show", () => (
-    <Show 
-    student={"Lydia Miller-Jones"}
-    interviewer={interviewer.name}
-    onEdit={action('onEdit')}
-    onDelete={action('onDelete')}
+// Show stories
+storiesOf("Show", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Show", () => (
+    <Show
+      student={"Lydia Miller-Jones"}
+      interviewer={interviewer.name}
+      onEdit={action('onEdit')}
+      onDelete={action('onDelete')}
     />
-    ));
+  ));
+
+// Confirm stories
+storiesOf("Confirm", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Confirm", () => (
+    <Confirm
+      message={"Delete the appointment?"}
+      onConfirm={action('onConfirm')}
+      onCancel={action('onCancel')}
+    />
+  ));
