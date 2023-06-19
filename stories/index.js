@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -158,7 +158,7 @@ storiesOf("Appointment", module)
   .add("Edit", () => (
     <Form
     student={"Britt Ferren"}
-    interviewer={4}
+    interviewer={interviewer.id}
     interviewers={interviewers}
     onSave={action('onSave')}
     onCancel={action('onCancel')}
@@ -170,6 +170,22 @@ storiesOf("Appointment", module)
     onSave={action('onSave')}
     onCancel={action('onCancel')}
     />
+  ))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment id="last" time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
   ))
 
 // Empty stories
@@ -188,8 +204,6 @@ storiesOf("Show", module)
   })
   .add("Show", () => (
     <Show
-      student={"Lydia Miller-Jones"}
-      interviewer={interviewer.name}
       onEdit={action('onEdit')}
       onDelete={action('onDelete')}
     />
