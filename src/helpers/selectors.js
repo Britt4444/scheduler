@@ -10,3 +10,17 @@ export function getAppointmentsForDay(state, day) {
   }
   return appointmentsData;
 };
+
+export function getInterview(state, interview) {
+  //return null if interview is not booked
+  if(!interview) {
+    return null;
+  }
+  // assign interview data to new obj
+  const interviewData = interview;
+  // change interview.id to interviewer name
+  interviewData.interviewer = state.interviewers[interview.interviewer];
+  // return newly structured interview obj
+  return interviewData;
+};
+
