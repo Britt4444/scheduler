@@ -27,12 +27,11 @@ export function getInterviewersForDay(state, day) {
     return null;
   }
   const appointmentsArray = state.days.find((selectedDay) => selectedDay.name === day);
-  const interviewersData = [];
   if (appointmentsArray) {
-      appointmentsArray.interviewers.map((interviewerId) =>
-        interviewersData.push(state.interviewers[interviewerId])
-      );
+    const interviewersData = appointmentsArray.interviewers.map((interviewerId) => {
+        return (state.interviewers[interviewerId])
+    });
+    return interviewersData;
   }
-  return interviewersData;
 }
 
