@@ -16,11 +16,25 @@ export function getInterview(state, interview) {
   if(!interview) {
     return null;
   }
-  // assign interview data to new obj
-  const interviewData = interview;
   // change interview.id to interviewer name
-  interviewData.interviewer = state.interviewers[interview.interviewer];
+  interview.interviewer = state.interviewers[interview.interviewer];
   // return newly structured interview obj
-  return interviewData;
+  return interview;
 };
+
+export function getInterviewersForDay(state, day) {
+  if(!state.days) {
+    return null;
+  }
+  const appointmentsArray = state.days.find((selectedDay) => selectedDay.name === day);
+  console.log(appointmentsArray);
+  const interviewersData = [];
+  if (appointmentsArray) {
+      appointmentsArray.interviewers.map((interviewerId) =>
+        interviewersData.push(state.interviewers[interviewerId])
+      );
+  }
+  console.log(interviewersData);
+  return interviewersData;
+}
 
