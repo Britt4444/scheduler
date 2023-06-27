@@ -27,14 +27,12 @@ export function getInterviewersForDay(state, day) {
     return null;
   }
   const appointmentsArray = state.days.find((selectedDay) => selectedDay.name === day);
-  console.log(appointmentsArray);
   const interviewersData = [];
   if (appointmentsArray) {
       appointmentsArray.interviewers.map((interviewerId) =>
         interviewersData.push(state.interviewers[interviewerId])
       );
   }
-  console.log(interviewersData);
   return interviewersData;
 }
 
