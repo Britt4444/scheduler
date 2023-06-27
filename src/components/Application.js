@@ -21,12 +21,17 @@ export default function Application() {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
 
+    function bookInterview(id, interview) {
+      console.log(id, interview);
+    }
+
     return (
       <Appointment
         key={appointment.id}
         {...appointment}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       ></Appointment>
     )
   })
