@@ -21,9 +21,27 @@ export default function Application() {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
 
+    //persist data via put request to update database with interview 
     function bookInterview(id, interview) {
-      console.log(id, interview);
-    }
+      return axios.put(`/api/appointments/${id}`, {
+        interview
+      })
+        .then(() => {
+          const appointment = {
+            ...state.appointments[id],
+            interview: { ...interview },
+          };
+          const appointments = {
+            ...state.appointments,
+            [id]: appointment,
+          };
+          setState({
+            ...state,
+            appointments
+          });
+        })
+        
+    };
 
     return (
       <Appointment

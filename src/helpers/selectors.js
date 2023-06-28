@@ -16,7 +16,7 @@ export function getInterview(state, interview) {
   if(!interview) {
     return null;
   }
-  // change interview.id to interviewer name
+  // interview.interviewer id = interviewers id 
   interview.interviewer = state.interviewers[interview.interviewer];
   // return newly structured interview obj
   return interview;
