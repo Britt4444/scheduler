@@ -16,7 +16,7 @@ export default function useVisualMode(initial) {
       return;
     }
     history.pop();
-    setHistory(history);
+    setHistory(prev => ([...prev, mode]))
     setMode(history[history.length - 1]);
   }
 
