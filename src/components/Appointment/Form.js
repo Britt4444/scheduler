@@ -23,8 +23,11 @@ export default function Form(props) {
           <input
             className="appointment__create-input text--semi-bold"
             value={student}
+            name={student}
             type="text"
             placeholder="Enter Student Name"
+            autoFocus
+            onFocus={(event) => event.target.select()}
             onChange={(event) => setStudent(event.target.value)}
           />
         </form>

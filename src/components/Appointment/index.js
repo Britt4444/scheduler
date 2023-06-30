@@ -14,6 +14,7 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
 
@@ -28,14 +29,14 @@ export default function Appointment(props) {
     });
     transition(SAVING);
     props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW));
+      .then(() => transition(SHOW));
   }
 
   function cancel() {
     transition(DELETING);
     props.cancelInterview(props.id)
-    .then(() => transition(DELETING))
-    .then(() => transition(EMPTY));
+      .then(() => transition(DELETING))
+      .then(() => transition(EMPTY));
   }
 
   return (
@@ -45,8 +46,11 @@ export default function Appointment(props) {
       {mode === SHOW && (
         <Show
           student={props.interview && props.interview.student}
-          interviewer={props.interview && props.interviewers.name}
-          onDelete={() => {transition(CONFIRM)}}
+          // below crashes the app after 4-6 day clicks - cannot read properties of "name" after saving edit
+          interviewer={props.interview && props.interview.interviewer.name}
+          onDelete={() => transition(CONFIRM)}
+          // still not working!
+          onEdit={() => transition(EDIT)}
         >
         </Show>
       )}
@@ -60,13 +64,23 @@ export default function Appointment(props) {
       )}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === CONFIRM && (
-      <Confirm 
-      message={"Are you sure you would like to delete?"}
-      onCancel={back}
-      onConfirm={() => cancel(props.id)}
-      ></Confirm>
-    )}
+        <Confirm
+          message={"Are you sure you would like to delete?"}
+          onCancel={back}
+          onConfirm={() => cancel(props.id)}
+        ></Confirm>
+      )}
       {mode === DELETING && <Status message={"Deleting"} />}
+      {mode === EDIT && (
+        <Form
+          student={props.interview && props.interview.student}
+          interviewer={props.interview && props.interview.interviewer.name}
+          interviewers={props.interviewers}
+          onCancel={back}
+          onSave={save}
+        >
+        </Form>
+      )}
     </article>
   );
 };
