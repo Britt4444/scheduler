@@ -64,7 +64,7 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
-          // add on(Event) handler to transition to EMPTY when selecting a slot, then another slot without submitting form
+        // add on(Event) handler to transition to EMPTY when selecting a slot, then another slot without submitting form
         >
         </Form>
       )}
@@ -88,19 +88,19 @@ export default function Appointment(props) {
         </Form>
       )}
       {mode === ERROR_SAVE && (
-      <Error 
-        message={"Unable to save appointment"}
-        // add condition to error if interview already exists
-        onClose={() => props.interview ? transition(SHOW): transition(EMPTY)}
-      >
-      </Error>)
+        <Error
+          message={"Unable to save appointment"}
+          // add condition to error if interview already exists
+          onClose={() => props.interview ? transition(SHOW) : transition(EMPTY)}
+        >
+        </Error>)
       }
       {mode === ERROR_DELETE && (
-      <Error 
-        message={"Unable to delete appointment"}
-        onClose={() => transition(SHOW)}
-      >
-      </Error>
+        <Error
+          message={"Unable to delete appointment"}
+          onClose={() => transition(SHOW)}
+        >
+        </Error>
       )}
     </article>
   );
