@@ -7,20 +7,26 @@ export default function useApplicationData(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   })
 
   const setDay = day => setState({ ...state, day });
 
-  useEffect(() => {
-    Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
-    ]).then((all) => {
-      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-    });
-  }, [])
+  //function to update spots remaining
+  const updateSpots = (state, day, appointment, addSpots = true) => {
+    let spots = day.spots;
+    if (addSpots) {
+      return spots +=1;
+    }
+    if (state.appointments[appointment.id].interview !== null) {
+      return spots;
+    }
+    if (!addSpots) {
+      return spots -=1;
+    }
+    return spots;
+  }
 
   //persist data via put request to update database with interview 
   function bookInterview(id, interview) {
@@ -36,9 +42,16 @@ export default function useApplicationData(props) {
           ...state.appointments,
           [id]: appointment
         };
+        const spotsLeft = state.days.map((day)=>{
+          return {
+            ...day,
+            spots: updateSpots(state, day, appointment, false)
+          }
+        });
         setState({
           ...state,
-          appointments
+          appointments,
+          days: spotsLeft
         });
       })
   };
@@ -55,11 +68,29 @@ export default function useApplicationData(props) {
           ...state.appointments,
           [id]: appointment,
         };
+        const spotsLeft = state.days.map((day)=>{
+          return {
+            ...day,
+            spots: updateSpots(state, day, appointment, true)
+          }
+        });
         setState({
           ...state,
-          appointments
+          appointments,
+          days: spotsLeft
         });
       })
   }
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/days'),
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers')
+    ]).then((all) => {
+      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
+    });
+  }, [])
+
   return { state, setDay, bookInterview, cancelInterview };
 }

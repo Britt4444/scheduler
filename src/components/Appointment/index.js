@@ -50,10 +50,9 @@ export default function Appointment(props) {
       {mode === SHOW && (
         <Show
           student={props.interview && props.interview.student}
-          // below crashes the app after 4-6 day clicks - cannot read properties of "name" after saving edit
+          // below crashes the app regularly, cannot read property of "name"
           interviewer={props.interview && props.interview.interviewer.name}
           onDelete={() => transition(CONFIRM)}
-          // still not working!
           onEdit={() => transition(EDIT)}
         >
         </Show>
