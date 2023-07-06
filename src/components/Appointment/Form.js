@@ -10,10 +10,12 @@ export default function Form(props) {
   function reset() {
     setStudent("");
     setInterviewer(null);
+    setError("");
   };
 
   function cancel() {
     reset();
+    setError("");
     props.onCancel();
   }
 
