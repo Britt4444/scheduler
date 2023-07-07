@@ -17,13 +17,13 @@ export default function useApplicationData(props) {
   const updateSpots = (state, day, appointment, addSpots = true) => {
     let spots = day.spots;
     if (addSpots) {
-      return spots +=1;
+      return spots += 1;
     }
     if (state.appointments[appointment.id].interview !== null) {
       return spots;
     }
     if (!addSpots) {
-      return spots -=1;
+      return spots -= 1;
     }
     return spots;
   }
@@ -42,7 +42,7 @@ export default function useApplicationData(props) {
           ...state.appointments,
           [id]: appointment
         };
-        const spotsLeft = state.days.map((day)=>{
+        const spotsLeft = state.days.map((day) => {
           return {
             ...day,
             spots: updateSpots(state, day, appointment, false)
@@ -68,7 +68,7 @@ export default function useApplicationData(props) {
           ...state.appointments,
           [id]: appointment,
         };
-        const spotsLeft = state.days.map((day)=>{
+        const spotsLeft = state.days.map((day) => {
           return {
             ...day,
             spots: updateSpots(state, day, appointment, true)

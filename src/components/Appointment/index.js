@@ -44,14 +44,14 @@ export default function Appointment(props) {
   }
 
   return (
-    <article className='appointment'>
+    <article className='appointment' data-testid="appointment">
       <Header time={props.time}></Header>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           student={props.interview && props.interview.student}
           // below crashes the app regularly, cannot read property of "name"
-          interviewer={props.interview && props.interview.interviewer.name}
+          interviewer={props.interview && props.interviewer}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         >
