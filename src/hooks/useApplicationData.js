@@ -29,8 +29,8 @@ export default function useApplicationData(props) {
   }
 
   //persist data via put request to update database with interview 
-  function bookInterview(id, interview) {
-    return axios.put(`/api/appointments/${id}`, {
+  async function bookInterview(id, interview) {
+    await axios.put(`/api/appointments/${id}`, {
       interview
     })
       .then(() => {
