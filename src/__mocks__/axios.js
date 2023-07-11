@@ -81,7 +81,7 @@ export default {
     }
   }),
   put: jest.fn(url => {
-    if (url.substring(0, 14) === "/appointments/") {
+    if (url.substring(0, 18) === "/api/appointments/") {
       return Promise.resolve({
         status:     204,
         statusText: "No Content"
