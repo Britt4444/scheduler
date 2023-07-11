@@ -42,7 +42,6 @@ export default function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
   }
-
   return (
     <article className='appointment' data-testid="appointment">
       <Header time={props.time}></Header>
@@ -51,7 +50,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview && props.interview.student}
           // below crashes the app regularly, cannot read property of "name"
-          interviewer={props.interview && props.interviewer}
+          interviewer={props.interview && props.interview.interviewer?.name}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         >

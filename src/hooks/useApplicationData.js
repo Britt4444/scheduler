@@ -14,18 +14,20 @@ export default function useApplicationData(props) {
   const setDay = day => setState({ ...state, day });
 
   //function to update spots remaining
-  const updateSpots = (state, day, appointment, addSpots = true) => {
-    let spots = day.spots;
-    if (addSpots) {
-      return spots += 1;
+  const updateSpots = (selectedDay, day, appointment, addSpots = true) => {
+    let spot = day.spots;
+    if (selectedDay.day === day.name) {
+      if (addSpots) {
+        return spot + 1;
+      }
+      if (state.appointments[appointment.id].interview !== null) {
+        return spot;
+      }
+      if (!addSpots) {
+        return spot - 1;
+      }
     }
-    if (state.appointments[appointment.id].interview !== null) {
-      return spots;
-    }
-    if (!addSpots) {
-      return spots -= 1;
-    }
-    return spots;
+    return spot;
   }
 
   //persist data via put request to update database with interview 
