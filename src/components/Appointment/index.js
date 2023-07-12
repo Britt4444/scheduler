@@ -78,6 +78,7 @@ export default function Appointment(props) {
       {mode === EDIT && (
         <Form
           student={props.interview && props.interview.student}
+          //after a few clicks , this starts evaluating to null?
           interviewer={props.interview && props.interview.interviewer?.id}
           interviewers={props.interviewers}
           onCancel={back}
