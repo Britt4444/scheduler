@@ -94,5 +94,6 @@ export default function useApplicationData(props) {
     });
   }, [])
 
-  return { state, setDay, bookInterview, cancelInterview };
+  return [state, setDay, bookInterview, cancelInterview];
+
 }
