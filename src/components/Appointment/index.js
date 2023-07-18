@@ -35,7 +35,7 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(error => transition(ERROR_SAVE, true));
   }
-
+  
   function cancel() {
     transition(DELETING, true);
     props.cancelInterview(props.id)
@@ -78,7 +78,6 @@ export default function Appointment(props) {
       {mode === EDIT && (
         <Form
           student={props.interview && props.interview.student}
-          //after a few clicks , this starts evaluating to null?
           interviewer={props.interview && props.interview.interviewer?.id}
           interviewers={props.interviewers}
           onCancel={back}
@@ -89,7 +88,6 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && (
         <Error
           message={"Unable to save appointment"}
-          // add condition to error if interview already exists
           onClose={() => props.interview ? transition(SHOW) : transition(EMPTY)}
         >
         </Error>)
