@@ -61,7 +61,7 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
-        // add on(Event) handler to transition to EMPTY when selecting a slot, then another slot without submitting form
+        // add on(Event) handler to transition to EMPTY when selecting a slot, then another slot without submitting form ??
         >
         </Form>
       )}
