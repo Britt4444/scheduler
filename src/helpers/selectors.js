@@ -16,10 +16,7 @@ export function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
-  // interview.interviewer id = interviewers id 
-  interview.interviewer = state.interviewers[interview.interviewer];
-  // return newly structured interview obj
-  return interview;
+  return { ...interview, interviewer: state.interviewers[interview.interviewer]};
 };
 
 export function getInterviewersForDay(state, day) {
@@ -31,7 +28,7 @@ export function getInterviewersForDay(state, day) {
     return [];
   }
   const interviewersData = appointmentsArray.interviewers.map((interviewerId) => {
-    return (state.interviewers[interviewerId])
+    return ({ ...state.interviewers[interviewerId]})
   });
   return interviewersData;
 }

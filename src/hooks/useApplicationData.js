@@ -36,9 +36,10 @@ export default function useApplicationData() {
       interview
     })
       .then(() => {
+        console.log('interview: ', interview);
         const appointment = {
           ...state.appointments[id],
-          interview: { ...interview }
+          interview: interview && { ...interview }
         };
         const appointments = {
           ...state.appointments,
@@ -50,6 +51,7 @@ export default function useApplicationData() {
             spots: updateSpots(state, day, appointment, false)
           }
         });
+        console.log(appointments)
         setState({
           ...state,
           appointments,

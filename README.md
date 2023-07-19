@@ -2,6 +2,17 @@
 
 ## Setup
 
+1. 
+
+## Dependecies
+
+- axios
+- classnames
+- normalize.css
+- react
+- react-dom
+- react-scripts
+
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
