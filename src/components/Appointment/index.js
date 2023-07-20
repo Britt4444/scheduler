@@ -55,13 +55,11 @@ export default function Appointment(props) {
         >
         </Show>
       )}
-      {/* choose slot, choose another slot, first one stays open?? */}
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
-        // add on(Event) handler to transition to EMPTY when selecting a slot, then another slot without submitting form ??
         >
         </Form>
       )}
