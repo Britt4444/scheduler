@@ -1,5 +1,9 @@
 # Interview Scheduler
 
+This project is a single-page application (SPA) that allows students to book technical interviews, choosing which time slot and interviewer works best for them. Interviews can also be edited or deleted by the student. The front-end was built with the React library, building components with JSX. Axios is used to load and persist data from the API and, therefore, user-booked interviews will remain unchanged upon refreshing the browser.
+
+Components were built in isolation with `Storybook`, and then tested using both the `Jest` and `Cypress` testing frameworks. 
+
 ## Setup
 
 1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
@@ -8,7 +12,7 @@
 4. Clone the database [respository](https://github.com/lighthouse-labs/scheduler-api) onto your local device (`cd` to the root directory first).
 5. Follow the instructions on the `scheduler-api` repo to create and seed your database.
 6. [Run the Webpack Dev Server](#running-webpack-development-server) to interact with the app via available appointments, as well as booking/editing/deleting appointments.
-7. [Run the Jest testing framework](#running-jest-test-framework), [run the Storybook visual testbed](#running-storybook-visual-testbed), and/or [run the Cypress testing framework](#running-cypress-test-framework).
+7. [Run the Jest testing framework](#running-jest-testing-framework), [run the Storybook visual testbed](#running-storybook-visual-testbed), and/or [run the Cypress testing framework](#running-cypress-testing-framework).
 
 ## Final Product
 
